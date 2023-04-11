@@ -22,12 +22,12 @@ public class Customers extends IIdentifiableEntity {
     private String accountNumber;
     private Boolean active;
 
-    /*@OneToOne
+    @OneToOne
     @JoinColumn(name = "saving_account_id")
-    private SavingsAccount sAccount;*/
+    private SavingsAccount sAccount;
 
-    /*@OneToOne
-    @JoinColumn(name = "current_acccount_id")
-    private CurrentAccount cAccount;*/
+    @OneToOne
+    @JoinColumn(name = "current_account_id")
+    private CurrentAccount cAccount;
 
 }
