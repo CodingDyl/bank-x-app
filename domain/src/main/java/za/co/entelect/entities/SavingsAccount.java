@@ -21,8 +21,8 @@ public class SavingsAccount extends IIdentifiableEntity {
     private BigDecimal balance;
     private float interestReceived;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "transaction_id")
-    private Transaction transaction_ref;*/
+    private Transactions transaction_ref;
 
 }

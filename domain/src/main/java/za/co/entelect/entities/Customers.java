@@ -5,15 +5,14 @@ import lombok.*;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-@Table(name = "customers", schema = "db-bankX")
 @Entity
 public class Customers extends IIdentifiableEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String firstName;
     private String lastName;
@@ -21,6 +20,7 @@ public class Customers extends IIdentifiableEntity {
     private Date startDate;
     private String accountNumber;
     private Boolean active;
+    private String identification;
 
     @OneToOne
     @JoinColumn(name = "saving_account_id")
