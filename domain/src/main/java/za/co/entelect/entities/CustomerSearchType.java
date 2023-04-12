@@ -1,6 +1,6 @@
 package za.co.entelect.entities;
 
-public enum SearchType {
+public enum CustomerSearchType {
     NAME_SEARCH,
 
     ACCOUNT_NUMBER_SEARCH,
