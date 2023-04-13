@@ -8,5 +8,4 @@ public class CustomerSearchRequest {
     private String firstName;
     private String lastName;
     private String accountNumber;
-    private String identification;
 }

@@ -13,6 +13,4 @@ public interface CustomerRepository extends CrudRepository<Customers, Long> {
 
     Optional<Customers> findByAccountNumber(String accountNumber);
 
-    Optional<Customers> findByIdentificationNumber(String identification);
-
 }

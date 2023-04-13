@@ -21,11 +21,6 @@ import java.util.function.Supplier;
 public class CustomersService {
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private CurrentAccountRepository currentAccountRepository;
-
-    @Autowired
-    private SavingsAccountRepository savingsAccountRepository;
 
     public CustomersService(CustomerRepository customerRepository) { this.customerRepository = customerRepository;}
 
@@ -38,22 +33,10 @@ public class CustomersService {
         customer.setStartDate(LocalDateTime.now());
         customer.setIdentification(createCustomerDTO.getIdentification());
 
-        CurrentAccount currentAccount = new CurrentAccount();
-        currentAccount.setAccountNumber(generateAccountNumber());
-        currentAccount.setBalance(BigDecimal.valueOf(0.00));
-        currentAccount.setCustomers(customer);
 
-        SavingsAccount savingsAccount = new SavingsAccount();
-        savingsAccount.setAccountNumber(generateAccountNumber());
-        savingsAccount.setBalance(BigDecimal.valueOf(500.00));
-        savingsAccount.setCustomer(customer);
-
-        customer.setCurrentAccount(currentAccount);
-        customer.setSavingsAccount(savingsAccount);
 
         Customers savedCustomer = customerRepository.save(customer);
-        currentAccountRepository.save(currentAccount);
-        savingsAccountRepository.save(savingsAccount);
+
 
         return savedCustomer;
     }
@@ -93,22 +76,9 @@ public class CustomersService {
 
         searchStrategies.put(CustomerSearchType.NAME_SEARCH, () -> customerRepository.findByFirstNameAndLastName(searchRequest.getFirstName(), searchRequest.getLastName()));
         searchStrategies.put(CustomerSearchType.ACCOUNT_NUMBER_SEARCH, () -> customerRepository.findByAccountNumber(searchRequest.getAccountNumber()));
-        searchStrategies.put(CustomerSearchType.IDENTIFICATION_SEARCH, () -> customerRepository.findByIdentificationNumber(searchRequest.getIdentification()));
 
         Optional<Customers> customerOptional = searchStrategies.get(searchRequest.getSearchType()).get();
 
         return customerOptional.orElse(null);
-    }
-
-    private String generateAccountNumber() {
-        String accountNumber = "";
-        Random random = new Random();
-
-        // Generate a 9-digit account number
-        for (int i = 0; i < 9; i++) {
-            accountNumber += random.nextInt(10);
-        }
-
-        return accountNumber;
     }
 }

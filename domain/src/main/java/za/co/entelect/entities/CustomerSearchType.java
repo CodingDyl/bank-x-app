@@ -4,6 +4,4 @@ public enum CustomerSearchType {
     NAME_SEARCH,
 
     ACCOUNT_NUMBER_SEARCH,
-
-    IDENTIFICATION_SEARCH,
 }

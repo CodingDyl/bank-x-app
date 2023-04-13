@@ -11,14 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-@Table(name = "transactions", schema = "db_bankX")
 @Entity
 public class Transactions extends IIdentifiableEntity {
     private Date transactionDate;
     private BigDecimal amount;
     private String description;
-
-    @OneToMany
-    private Customers customerId;
 }

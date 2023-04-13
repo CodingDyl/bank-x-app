@@ -2,6 +2,11 @@ package za.co.entelect.dtos.customer;
 
 import lombok.Getter;
 import lombok.Setter;
+import za.co.entelect.dtos.currentAccount.CreateCurrentAccountDTO;
+import za.co.entelect.dtos.currentAccount.CurrentAccountDTO;
+import za.co.entelect.dtos.savingsAccount.CreateSavingsAccountDTO;
+import za.co.entelect.dtos.savingsAccount.SavingsAccountDTO;
+import za.co.entelect.entities.CurrentAccount;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -17,6 +22,10 @@ public class CreateCustomerDTO {
     private Boolean active;
     private String identification;
 
+    private CreateSavingsAccountDTO savingsAccount;
+
+    private CreateCurrentAccountDTO currentAccount;
+
     public boolean hasAllRequiredFields() {
         return email != null
                 && firstName != null
@@ -24,6 +33,8 @@ public class CreateCustomerDTO {
                 && startDate != null
                 && accountNumber != null
                 && identification != null
-                && active != null;
+                && active != null
+                && currentAccount != null
+                && savingsAccount != null;
     }
 }
