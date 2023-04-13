@@ -31,7 +31,7 @@ public class CustomerDTO {
                 .email(customerEntity.getEmail())
                 .startDate(customerEntity.getStartDate())
                 .accountNumber(customerEntity.getAccountNumber())
-                .active(customerEntity.getActive().booleanValue())
+                .active(customerEntity.getActive())
                 .identification(customerEntity.getIdentification())
                 .build();
     }
