@@ -3,6 +3,9 @@ package za.co.entelect.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.co.entelect.dtos.customer.CreateCustomerDTO;
+import za.co.entelect.dtos.customer.CustomerDTO;
+import za.co.entelect.dtos.customer.UpdateCustomerDTO;
 import za.co.entelect.entities.CustomerSearchRequest;
 import za.co.entelect.entities.Customers;
 import za.co.entelect.services.CustomersService;
@@ -18,7 +21,7 @@ public class CustomersController {
     public CustomersController(CustomersService customersService) { this.customersService = customersService;}
 
     @PostMapping
-    public ResponseEntity<?> createCustomer(@RequestBody Customers customer) {
+    public ResponseEntity<?> createCustomer(@RequestBody CreateCustomerDTO customer) {
         final Customers savedCustomer = customersService.createCustomer(customer);
 
         return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
@@ -37,7 +40,7 @@ public class CustomersController {
 
     @PostMapping("{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable Long id) {
-        Customers customer = this.customersService.getCustomer(id);
+        CustomerDTO customer = this.customersService.getCustomer(id);
 
         if(customer != null) {
             return new ResponseEntity<>(customer, HttpStatus.OK);

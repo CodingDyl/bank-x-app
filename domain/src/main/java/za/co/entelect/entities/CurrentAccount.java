@@ -2,23 +2,22 @@ package za.co.entelect.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import za.co.entelect.dtos.customer.CustomerDTO;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class CurrentAccount extends IIdentifiableEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String accountNumber;
 
     private BigDecimal balance;
 
-    @ManyToOne
-    @JoinColumn(name = "transaction_id")
-    private Transactions transaction_ref;
+    @OneToOne
+    private Customers customers;
 }

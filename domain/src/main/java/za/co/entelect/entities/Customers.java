@@ -3,31 +3,29 @@ package za.co.entelect.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Customers extends IIdentifiableEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     private String firstName;
     private String lastName;
     private String email;
-    private Date startDate;
+    private LocalDateTime startDate;
     private String accountNumber;
     private Boolean active;
     private String identification;
 
-    @OneToOne
-    @JoinColumn(name = "saving_account_id")
-    private SavingsAccount sAccount;
+    @OneToOne(cascade = CascadeType.ALL)
+    private SavingsAccount savingsAccount;
 
-    @OneToOne
-    @JoinColumn(name = "current_account_id")
-    private CurrentAccount cAccount;
+    @OneToOne(cascade = CascadeType.ALL)
+    private CurrentAccount currentAccount;
 
 }
