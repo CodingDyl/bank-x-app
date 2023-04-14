@@ -17,4 +17,5 @@ public class Transactions extends IIdentifiableEntity {
     private LocalDateTime transactionDate;
     private BigDecimal amount;
     private String description;
+    private BigDecimal charge;
 }

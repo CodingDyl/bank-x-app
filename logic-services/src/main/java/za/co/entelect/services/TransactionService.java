@@ -27,11 +27,16 @@ public class TransactionService {
             throw new IllegalArgumentException("Insufficient funds in the account.");
         }
 
-        currentAccount.setBalance(currentAccount.getBalance().subtract(amount));
+        BigDecimal charge = amount.multiply(BigDecimal.valueOf(0.0005));
+
+        BigDecimal newAmount = amount.add(charge);
+
+        currentAccount.setBalance(currentAccount.getBalance().subtract(newAmount));
 
         Transactions transaction = new Transactions();
         transaction.setTransactionDate(LocalDateTime.now());
-        transaction.setAmount(amount);
+        transaction.setAmount(newAmount);
+        transaction.setCharge(charge);
         transaction.setDescription(description);
 
         transactionRepository.save(transaction);
