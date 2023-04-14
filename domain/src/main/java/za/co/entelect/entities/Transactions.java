@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -13,7 +14,7 @@ import java.util.Date;
 @Builder
 @Entity
 public class Transactions extends IIdentifiableEntity {
-    private Date transactionDate;
+    private LocalDateTime transactionDate;
     private BigDecimal amount;
     private String description;
 }
